@@ -1,2 +1,0 @@
-# .github
-dotgithub and docs
