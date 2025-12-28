@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta property="og:title" content="playm8s" />
-  <meta property="og:description" content="all your gameservers in one place" />
+  <meta property="og:description" content="the ultimate gameserver companion" />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://playm8s.cc" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -32,7 +32,7 @@
       {{ end }}
       {{ $sizeDesc = 45 }}
   {{ end }}
-  {{ $description := "PlayM8s" }}
+  {{ $description := "the ultimate gameserver companion" }}
   {{ with $description }}
       {{ $textDesc := $description }}
       {{ $textDescOptions := dict
@@ -44,18 +44,6 @@
       }}
       {{ $descFilter := (images.Text $textDesc $textDescOptions) }}
       {{ $filters = $filters | append $descFilter }}
-  {{ end }}
-  {{ $textSiteTitle := $.Site.Title }}
-  {{ with $textSiteTitle }}
-      {{ $textSiteTitleOptions := dict
-          "color" "#f9f1f1"
-          "size" 35
-          "lineSpacing" 10
-          "x" 65 "y" 550
-          "font" $font
-      }}
-      {{ $siteTitleFilter := (images.Text $textSiteTitle $textSiteTitleOptions)}}
-      {{ $filters = $filters | append $siteTitleFilter }}
   {{ end }}
   {{ $featured = $featured | images.Filter $filters }}
   <meta property="og:image" content="{{ $featured.Permalink }}"/>
@@ -108,7 +96,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>Welcome to PlayM8s!</h1>
+    <h1>Welcome to playm8s!</h1>
     <p>
       beep boop.
       you have discovered me!
