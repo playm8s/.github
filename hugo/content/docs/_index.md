@@ -1,6 +1,6 @@
 ---
 weight: 1
 title: "Docs Home"
-description: "Welcome to playm8s.cc"
+description: "Welcome to pm8s.io"
 draft: false
 ---

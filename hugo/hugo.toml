@@ -1,4 +1,4 @@
-baseURL = "https://playm8s.cc/"
+baseURL = "https://pm8s.io/"
 languageCode = "en-us"
 title = "playm8s"
 sectionPagesMenu = "primary"
@@ -42,8 +42,8 @@ defaultContentLanguage = 'en'
   extLinkNewTab  = true
   prism          = true 
   prismTheme     = "lucario"
-  title          = "playm8s.cc"
-  logoLinkURL    = "https://playm8s.cc/docs"
+  title          = "pm8s.io"
+  logoLinkURL    = "https://pm8s.io/docs"
   darkMode       = true
   themeColor     = "blue"
 
