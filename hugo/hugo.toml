@@ -1,12 +1,12 @@
 baseURL = "https://pm8s.io/"
 languageCode = "en-us"
-title = "playm8s"
+title = "PlayM8s"
 sectionPagesMenu = "primary"
 
 defaultContentLanguage = 'en'
 [languages]
   [languages.en]
-    title = "playm8s"
+    title = "PlayM8s"
     languageName = "English"
     weight = 10
 
@@ -35,7 +35,7 @@ defaultContentLanguage = 'en'
   sans_serif_font = "Inter"     # Default is System font
   secondary_font  = "Inter"     # Default is System font
   mono_font       = "Fira Code" # Default is System font
-  description     = "playm8s"
+  description     = "PlayM8s"
 
 [params.docs]
   intLinkTooltip = true
