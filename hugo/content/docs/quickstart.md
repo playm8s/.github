@@ -13,7 +13,7 @@ toc: true
 PlayM8s (pm8s) is an ecosystem of tooling to help manage the lifecycle of various gameservers \
 in a kubernetes cluster.
 
-> PlayM8s is currently a WIP and is undergoing heavy development
+> PlayM8s is currently a WIP and is undergoing heavy development \
 > Keep an eye on releases, we're getting towards a `1.0.0` soon!
 
 ---
@@ -34,7 +34,7 @@ in a kubernetes cluster.
 
 PlayM8s should run on any normal k8s distribution.
 
-The reference architecture is 3x 4c/8g VMs running RKE2 with Cilium as the CNI and a shared filesystem for the CSI
+The reference architecture is 3x 4c/8g VMs running RKE2 with Cilium as the CNI and a shared filesystem available.
 
 ---
 
