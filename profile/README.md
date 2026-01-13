@@ -1,1 +1,1 @@
-../README.md
+../hugo/content/docs/quickstart.md

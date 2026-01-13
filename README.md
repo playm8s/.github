@@ -1,3 +1,1 @@
-#
-
-***playm8s***, the kubernetes operator to manage gameserver lifecycles.
+./hugo/content/docs/quickstart.md
