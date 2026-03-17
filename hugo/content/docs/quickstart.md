@@ -97,4 +97,60 @@ helm install pm8s-operator pm8s/operator
 
 ### Deploying your first gameserver
 
-Stay tuned!
+To deploy your first gameserver, you'll need to create a GameserverBase, optionally create GameserverOverlays, and then create a Gameserver that references them.
+
+First, create a GameserverBase:
+
+```yaml
+# gameserverbase.yaml
+apiVersion: pm8s.io/v1
+kind: GameserverBase
+metadata:
+  name: csgo-base
+spec:
+  game: csgo
+  storageClassName: fast-ssd
+  storageStrategy: raw
+```
+
+Apply the GameserverBase:
+
+```bash
+kubectl apply -f gameserverbase.yaml
+```
+
+Next, create a Gameserver:
+
+```yaml
+# gameserver.yaml
+apiVersion: pm8s.io/v1
+kind: Gameserver
+metadata:
+  name: my-csgo-server
+spec:
+  game: csgo
+  gameserverBase: csgo-base
+  storageClassName: fast-ssd
+  storageStrategy: raw
+```
+
+Apply the Gameserver:
+
+```bash
+kubectl apply -f gameserver.yaml
+```
+
+You can also use the provided Helm chart to deploy a CS:GO server:
+
+```bash
+helm repo add pm8s https://helm.pm8s.io
+helm repo update
+
+helm install my-csgo-server pm8s/gameserver-csgo
+```
+
+Check the status of your gameserver:
+
+```bash
+kubectl get gameservers
+```
