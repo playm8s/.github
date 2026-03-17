@@ -50,8 +50,8 @@ The operator sets the following environment variables in the game server contain
 
 The operator can be configured using the following environment variables:
 
-- `PM8S_NAMESPACE`: The namespace the operator should watch (default: "pm8s-system")
-- `PM8S_WATCH_OTHER_NAMESPACES`: Whether the operator should watch namespaces other than its own (default: "false")
+- `NAMESPACE`: The namespace the operator should watch (default: "pm8s-system")
+- `WATCH_OTHER_NAMESPACES`: Whether the operator should watch namespaces other than its own (default: "false")
 - `KUBE_IN_CLUSTER_CONFIG`: Whether to use in-cluster Kubernetes configuration (default: parsed from environment)
 
 ## API Endpoints
