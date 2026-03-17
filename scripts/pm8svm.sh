@@ -112,7 +112,19 @@ update_version() {
   # Run npm install to update package-lock.json
   if [[ -f "$component/package-lock.json" ]]; then
     log "Running npm install in $component to update package-lock.json"
-    (cd "$component" && npm install)
+    
+    # Check if component has pepr in its dependencies
+    local use_legacy_peer_deps=false
+    if [[ -f "$component/package.json" ]] && grep -q '"pepr"' "$component/package.json"; then
+      use_legacy_peer_deps=true
+    fi
+    
+    if [[ "$use_legacy_peer_deps" == true ]]; then
+      log "Using legacy peer deps for $component (pepr detected in dependencies)"
+      (cd "$component" && npm install --legacy-peer-deps)
+    else
+      (cd "$component" && npm install)
+    fi
   fi
 }
 
@@ -217,7 +229,7 @@ git_operations() {
   fi
   
   # Create tag
-  local tag_name="v${version}"
+  local tag_name="${version}"
   
   # Check if tag already exists
   if git rev-parse "$tag_name" >/dev/null 2>&1; then
@@ -306,6 +318,9 @@ version_components() {
 push_components() {
   local components_to_push=()
   
+  # Define components that need -build suffix on tags
+  local BUILD_SUFFIX_COMPONENTS=("crds" "helm")
+  
   # If no components specified, push all
   if [[ $# -eq 0 ]]; then
     components_to_push=("${COMPONENTS[@]}")
@@ -358,6 +373,32 @@ push_components() {
     fi
     
     # Push tags
+    # Check if this component needs -build suffix
+    local needs_build_suffix=false
+    for build_comp in "${BUILD_SUFFIX_COMPONENTS[@]}"; do
+      if [[ "$component" == "$build_comp" ]]; then
+        needs_build_suffix=true
+        break
+      fi
+    done
+    
+    if [[ "$needs_build_suffix" == true ]]; then
+      # For components that need -build suffix, we need to create new tags
+      log "Creating -build suffixed tags for $component..."
+      
+      # Get all tags, filter for semantic version tags, and create -build variants
+      git tag -l | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | while read tag; do
+        build_tag="${tag}-build"
+        if ! git rev-parse "$build_tag" >/dev/null 2>&1; then
+          # Create the -build tag pointing to the same commit
+          git tag "$build_tag" "$tag"
+          log "Created tag $build_tag for $component"
+        else
+          log "Tag $build_tag already exists for $component"
+        fi
+      done
+    fi
+    
     if ! git push --tags; then
       log "Tag push failed, attempting git pull --rebase for tags..."
       if git pull --rebase; then
